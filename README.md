@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# KeepSmiling React challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a project i've made as a challenge for a job at  [KeepSmiling](https://keepsmiling.com.ar/).
 
-## Available Scripts
+## To run this project
 
-In the project directory, you can run:
+1. Install NodeJs >= v.14 LTS
+2. Open a terminal on the root folder and run `npm install` command.
+3. Run `npm start` command to run this application on port 3000.
 
-### `npm start`
+## Dependencies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [Chakra UI](https://chakra-ui.com/) as a styled component library.
+* [Chakra paginator](https://www.npmjs.com/package/chakra-paginator) to handle the table pagination. 
+* [Chakra icons](https://chakra-ui.com/docs/media-and-icons/icon) for webpage icons.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+***
+### dataService 
 
-### `npm test`
+I've created a dataService simulator to emulate a real fetch to an API. It's in the folder `services`. It has a setTimeout function to delay the fetching proccess as a real fetch would do, and returns a promise. There you can set the reject time shorter to simulate an error in the API. It would be ok, because this applications handles this error, and displays a message to the user. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+const dataService = (pageOne, pageTwo) => {
+  return (
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve([
+          patientsList.slice(pageOne, pageTwo), patientsList.length
+        ]);
+      }, 1500);
+      setTimeout(() => {
+        reject({
+          msg: 'Error',
+          statusCode: 500
+        });
+      }, 2000)
+    })
+  )
+}
+```
