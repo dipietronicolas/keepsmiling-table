@@ -167,16 +167,15 @@ const patientsList = [
     fec_inicio: '2021-07-21',
     fec_fin: '2021-10-05'
   },
-
 ];
 
 // Creo una funcion que devuelve una promise con la lista de pacientes 
 // y dentro un setTimeout para emular una consulta real a una base de datos. 
-const dataService = () => {
+const dataService = (pageOne, pageTwo) => {
   return (
     new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(patientsList);
+        resolve([patientsList.slice(pageOne, pageTwo), patientsList.length]);
       }, 1500);
       setTimeout(() => {
         reject({

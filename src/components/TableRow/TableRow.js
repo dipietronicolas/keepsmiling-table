@@ -4,9 +4,11 @@ import { EditIcon, CheckIcon } from '@chakra-ui/icons'
 
 const TableRow = ({ name, dentist, plates, fec_inicio, fec_fin }) => {
 
+  // Estado para saber si el boton de activar esta activado o no
   const [isLock, setIsLock] = useState(true);
 
-  const handleEditButton = (e) => {
+  // Function para manejar el boton de editar
+  const handleEditButton = () => {
     setIsLock(!isLock);
   }
 
